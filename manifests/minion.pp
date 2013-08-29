@@ -34,10 +34,12 @@
 # Copyright 2013 Francois Deppierraz, unless otherwise noted.
 #
 class salt::minion (
-  $ensure   = 'present',
-  $package  = $salt::params::minion_package,
-  $service  = $salt::params::minion_service,
-  $master   = 'salt',
+  $ensure       = 'present',
+  $package      = $salt::params::minion_package,
+  $service      = $salt::params::minion_service,
+  $master       = 'salt',
+  $ppa_required = $salt::params::ppa_required,
+  $ppa          = $salt::params::ppa,
 ) inherits salt::params {
   anchor { 'salt::minion::start': } ->
   class { 'salt::minion::package': } ~>

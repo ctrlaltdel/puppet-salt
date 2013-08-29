@@ -37,13 +37,15 @@
 # Copyright 2013 Francois Deppierraz, unless otherwise noted.
 #
 class salt::minion::package {
+  package { $salt::minion::package:
+    ensure  => $salt::minion::ensure,
+  }
 
   if $salt::minion::ppa_required {
     ensure_resource('apt::ppa', $salt::params::ppa)
-  }
 
-  package { $salt::minion::package:
-    ensure  => $salt::minion::ensure,
-    require => Apt::Ppa[$salt::params::ppa],
+    Package[$salt::minion::package] {
+      require => Apt::Ppa[$salt::params::ppa],
+    }
   }
 }

@@ -38,12 +38,15 @@
 #
 class salt::master::package {
 
-  if $salt::master::ppa_required {
-    ensure_resource('apt::ppa', $salt::params::ppa)
-  }
-
   package { $salt::master::package:
     ensure  => $salt::master::ensure,
-    require => Apt::Ppa[$salt::params::ppa],
+  }
+
+  if $salt::master::ppa_required {
+    ensure_resource('apt::ppa', $salt::params::ppa)
+
+    Package[$salt::master::package] {
+      require => Apt::Ppa[$salt::params::ppa],
+    }
   }
 }
