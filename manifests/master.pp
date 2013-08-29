@@ -39,7 +39,7 @@
 class salt::master (
   $ensure       = 'present',
   $package      = $salt::params::master_package,
-  $service      = $salt::params::service_package,
+  $service      = $salt::params::master_service,
   $ppa_required = $salt::params::ppa_required,
   $ppa          = $salt::params::ppa,
   ) inherits salt::params {
