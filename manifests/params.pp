@@ -25,10 +25,6 @@ class salt::params {
           $ppa_required = true
           $ppa = 'ppa:saltstack/salt'
         }
-
-        default: {
-          fail("Unsupported OS Release: ${::operatingsystemrelease}")
-        }
       }
     }
 
